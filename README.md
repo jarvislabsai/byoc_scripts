@@ -1,0 +1,2 @@
+# settingup
+Setting up docker
