@@ -1,4 +1,4 @@
-apt install openssh-server -y automatically
+DEBIAN_FRONTEND=noninteractive apt install openssh-server -y 
 mkdir -p ~/.ssh
 SSH_KEY=$1
 echo $SSH_KEY
