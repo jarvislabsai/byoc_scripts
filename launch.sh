@@ -5,3 +5,6 @@ echo $SSH_KEY
 echo $SSH_KEY | tee -a ~/.ssh/authorized_keys && \
     chmod 600 ~/.ssh/authorized_keys
 service ssh restart
+echo "cd /home" >> ~/.bashrc
+echo "export HOME=/home/" >> ~/.bashrc
+export SHELL="/bin/bash"
