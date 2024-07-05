@@ -1,18 +1,22 @@
 cd /root
-apt update
-apt-get install -y git wget vim
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh -b
-rm -rf Miniconda3-latest-Linux-x86_64.sh 
+export PATH="/root/miniconda3/bin:$PATH"  # Temporarily add Miniconda to PATH for this session
+echo 'export PATH="/root/miniconda3/bin:$PATH"' >> ~/.bashrc  # Add Miniconda to PATH permanently
+
+source ~/.bashrc
+conda init bash
+source ~/.bashrc  # Reload .bashrc to ensure conda is initialized
+
+conda install -y jupyterlab  # Install Jupyter Lab using conda
+
 DEBIAN_FRONTEND=noninteractive apt install openssh-server -y 
 mkdir -p ~/.ssh
 service ssh restart
+
 echo "cd /root" >> ~/.bashrc
-echo "export HOME=/root/" >> ~/.bashrc
-echo "PATH='/root/miniconda3/bin:/root/miniconda3/condabin:/root/miniconda3/bin:/opt/conda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:~/.local/bin'" >> ~/.bashrc
-source .bashrc
-conda init && source .bashrc
-pip install jupyterlab notebook ipywidgets
+source ~/.bashrc
+
 export SHELL="/bin/bash"
-env HOME=/root/ jupyter lab --ip=0.0.0.0 --NotebookApp.token=$TOKEN  --allow-root --port 8889
-rm -rf launch.sh
+
+env HOME=/home jupyter lab --ip=0.0.0.0 --NotebookApp.token=$TOKEN  --allow-root --port 8889
