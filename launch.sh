@@ -1,6 +1,4 @@
-apt update
-apt-get install -y git wget vim
-cd /root &&
+cd /root
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh -b
 export PATH="/root/miniconda3/bin:$PATH"  # Temporarily add Miniconda to PATH for this session
@@ -22,5 +20,6 @@ source ~/.bashrc
 
 export SHELL="/bin/bash"
 
-env HOME=/home jupyter lab --ip=0.0.0.0 --NotebookApp.token=$TOKEN  --allow-root --port 8889
+env HOME=/home jupyter lab --ip=0.0.0.0 --NotebookApp.token=$TOKEN  --allow-root --port 8889 &
+
 export HOME="/home"
